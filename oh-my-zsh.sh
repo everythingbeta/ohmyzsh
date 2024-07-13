@@ -68,7 +68,7 @@ mkdir -p "$ZSH_CACHE_DIR/completions"
 (( ${fpath[(Ie)"$ZSH_CACHE_DIR/completions"]} )) || fpath=("$ZSH_CACHE_DIR/completions" $fpath)
 
 # Check for updates on initial load...
-# source "$ZSH/tools/check_for_upgrade.sh"
+source "$ZSH/tools/check_for_upgrade.sh"
 
 # Initializes Oh My Zsh
 
@@ -116,7 +116,7 @@ zcompdump_fpath="#omz fpath: $fpath"
 
 # Delete the zcompdump file if OMZ zcompdump metadata changed
 if ! command grep -q -Fx "$zcompdump_revision" "$ZSH_COMPDUMP" 2>/dev/null \
-|| ! command grep -q -Fx "$zcompdump_fpath" "$ZSH_COMPDUMP" 2>/dev/null; then
+   || ! command grep -q -Fx "$zcompdump_fpath" "$ZSH_COMPDUMP" 2>/dev/null; then
   command rm -f "$ZSH_COMPDUMP"
   zcompdump_refresh=1
 fi
@@ -200,16 +200,16 @@ done
 unset lib_file
 
 # Load all of the plugins that were defined in ~/.zshrc
-# for plugin ($plugins); do
-#   _omz_source "plugins/$plugin/$plugin.plugin.zsh"
-# done
-# unset plugin
+for plugin ($plugins); do
+  _omz_source "plugins/$plugin/$plugin.plugin.zsh"
+done
+unset plugin
 
 # Load all of your custom configurations from custom/
-# for config_file ("$ZSH_CUSTOM"/*.zsh(N)); do
-#   source "$config_file"
-# done
-# unset config_file
+for config_file ("$ZSH_CUSTOM"/*.zsh(N)); do
+  source "$config_file"
+done
+unset config_file
 
 # Load the theme
 is_theme() {
