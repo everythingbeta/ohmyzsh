@@ -200,10 +200,10 @@ done
 unset lib_file
 
 # Load all of the plugins that were defined in ~/.zshrc
-for plugin ($plugins); do
-  _omz_source "plugins/$plugin/$plugin.plugin.zsh"
-done
-unset plugin
+# for plugin ($plugins); do
+#   _omz_source "plugins/$plugin/$plugin.plugin.zsh"
+# done
+# unset plugin
 
 # Load all of your custom configurations from custom/
 for config_file ("$ZSH_CUSTOM"/*.zsh(N)); do
